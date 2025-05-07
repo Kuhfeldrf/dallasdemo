@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Dallas Lab</title>
+    <style>
+        :root {
+            --primary: #006A8E;
+            --secondary: #D73F09;
+            --accent: #8E6F3E;
+            --light: #f5f5f5;
+            --dark: #333333;
+            --spacing: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-tables {
+            margin: 2rem 0;
+        }
+
+        .pricing-category {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .pricing-category h3 {
+            color: var(--primary);
+            margin: 0;
+            padding: 1.5rem;
+            background-color: var(--light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .pricing-category h3:hover {
+            background-color: #e0e0e0;
+        }
+
+        .pricing-category h3::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-category.active h3::after {
+            transform: rotate(45deg);
+        }
+
+        .pricing-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .pricing-category.active .pricing-content {
+            max-height: 500px;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-table th {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-table td:last-child {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .service-description {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .service-description h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-description ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.pricing-category');
+            
+            categories.forEach(category => {
+                const header = category.querySelector('h3');
+                header.addEventListener('click', () => {
+                    category.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="dallas-lab-website.html" class="logo">
+                    <img src="images/dallas-lab-logo.png" alt="Dallas Lab Logo">
+                    Dallas Lab
+                </a>
+                <ul class="nav-links">
+                    <li><a href="dallas-lab-website.html#services">Services</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="dallas-lab-website.html#case-studies">Case Studies</a></li>
+                    <li><a href="dallas-lab-website.html#about">About Us</a></li>
+                    <li><a href="dallas-lab-website.html#publications">Publications</a></li>
+                    <li><a href="dallas-lab-website.html#contact" class="btn">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Our Services</h1>
+                <p>Comprehensive analytical services for milk and dairy research</p>
+            </div>
+
+            <div class="service-description">
+                <h3>About Our Services</h3>
+                <p>The Dallas Lab offers a comprehensive suite of analytical services for milk and dairy research. Our state-of-the-art facilities and experienced team provide high-quality results for both academic and industry clients.</p>
+                <p>We specialize in:</p>
+                <ul>
+                    <li>Peptidomic and proteomic analysis</li>
+                    <li>Functional analysis of milk components</li>
+                    <li>In vitro digestion modeling</li>
+                    <li>Data analysis and interpretation</li>
+                    <li>Technical writing and publication support</li>
+                </ul>
+            </div>
+
+            <div id="pricing" class="pricing-tables">
+                <div class="pricing-category">
+                    <h3>Peptidomic Analysis</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Peptidomic + Functional Annotation</td>
+                                    <td>$150</td>
+                                </tr>
+                                <tr>
+                                    <td>Full Peptidomic</td>
+                                    <td>$150</td>
+                                </tr>
+                                <tr>
+                                    <td>Absorptomics</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pricing-category">
+                    <h3>Proteomic Analysis</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ELISA</td>
+                                    <td>$100</td>
+                                </tr>
+                                <tr>
+                                    <td>MS</td>
+                                    <td>$150</td>
+                                </tr>
+                                <tr>
+                                    <td>HPLC-DAD</td>
+                                    <td>$100</td>
+                                </tr>
+                                <tr>
+                                    <td>Gel Electrophoresis</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pricing-category">
+                    <h3>Functional Analysis</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cell Adhesion</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>THP-1-derived macrophage immunomodulatory assays</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Enzyme Assays (BSSL, lipases, proteases, lysozyme)</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Lipid Oxidation Testing</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Fatty Acid Profiling</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Fecal Fat and Protein Analysis</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pricing-category">
+                    <h3>Writing Services</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Technical Reports</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Scientific Publications</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Systematic Review Conduct</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pricing-category">
+                    <h3>Data Analysis</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Functional Peptide Annotation</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>Hourly Rate</td>
+                                    <td>$100/hr</td>
+                                </tr>
+                                <tr>
+                                    <td>Figure Generation</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>16s Bioinformatics</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pricing-category">
+                    <h3>In Vitro Digestion</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Static in vitro digestion with INFOGEST protocol</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>SHIME digestion w/o microbiome analysis</td>
+                                    <td>POR</td>
+                                </tr>
+                                <tr>
+                                    <td>SHIME with microbiome analysis</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pricing-category">
+                    <h3>Consultation</h3>
+                    <div class="pricing-content">
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Project Design</td>
+                                    <td>$200/hr</td>
+                                </tr>
+                                <tr>
+                                    <td>Project Troubleshooting</td>
+                                    <td>$200/hr</td>
+                                </tr>
+                                <tr>
+                                    <td>Hosting a Panel</td>
+                                    <td>POR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-description">
+                <h3>Notes on Pricing</h3>
+                <ul>
+                    <li>POR (Price on Request) services require custom quotes based on project scope and requirements</li>
+                    <li>Volume discounts available for multiple samples or long-term projects</li>
+                    <li>Academic and non-profit organizations may qualify for special rates</li>
+                    <li>All prices are subject to change without notice</li>
+                </ul>
+                <p>For detailed quotes or custom service packages, please <a href="dallas-lab-website.html#contact">contact us</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dallas Lab</h3>
+                    <p>Oregon State University<br>College of Health<br>Corvallis, OR 97331</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="dallas-lab-website.html#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="dallas-lab-website.html#case-studies">Case Studies</a></li>
+                        <li><a href="dallas-lab-website.html#about">About Us</a></li>
+                        <li><a href="dallas-lab-website.html#publications">Publications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#pricing">Peptidomic Analysis</a></li>
+                        <li><a href="#pricing">Proteomic Analysis</a></li>
+                        <li><a href="#pricing">Functional Analysis</a></li>
+                        <li><a href="#pricing">Data Analysis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:dallas.lab@oregonstate.edu">Email Us</a></li>
+                        <li><a href="https://www.linkedin.com/in/dave-dallas-123456789" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/dallaslab" target="_blank">Twitter</a></li>
+                        <li><a href="https://www.researchgate.net/profile/Dave-Dallas" target="_blank">Research Gate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Dallas Lab, Oregon State University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
