@@ -604,6 +604,69 @@
         .research-tab-content.active {
             display: block;
         }
+
+        .services-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .services-tab-btn {
+            background: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 4px 4px 0 0;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .services-tab-btn.active, .services-tab-btn:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .services-tab-content {
+            display: none;
+        }
+        .services-tab-content.active {
+            display: block;
+        }
+
+        .service-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .service-content {
+            flex: 2 1 350px;
+            min-width: 260px;
+        }
+        .service-img {
+            flex: 1 1 250px;
+            min-width: 200px;
+            text-align: right;
+        }
+        .service-img img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        @media (max-width: 900px) {
+            .service-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .service-img {
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -749,91 +812,165 @@
                 <h2>Our Services</h2>
                 <p>Comprehensive analytical services for milk and dairy research</p>
             </div>
-
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="images/Lumos.png" alt="Mass Spectrometry Analysis">
-                    </div>
+            <div class="services-tabs">
+                <button class="services-tab-btn active" data-tab="protein">Protein Analysis</button>
+                <button class="services-tab-btn" data-tab="peptide">Peptide Analysis</button>
+                <button class="services-tab-btn" data-tab="functional">Functional Analysis</button>
+                <button class="services-tab-btn" data-tab="digestion">In Vitro Digestion</button>
+                <button class="services-tab-btn" data-tab="data">Data Analysis</button>
+                <button class="services-tab-btn" data-tab="consultation">Expert Consultation</button>
+                <button class="services-tab-btn" data-tab="scoping">Scoping Review Articles</button>
+                <button class="services-tab-btn" data-tab="panel">Hosting Expert Panel</button>
+            </div>
+            <div class="services-tab-content" id="tab-protein" style="display: block;">
+                <div class="service-row">
                     <div class="service-content">
-                        <h3>Mass Spectrometry Analysis</h3>
+                        <h3>Protein Analysis</h3>
+                        <p>Comprehensive protein analysis using advanced mass spectrometry techniques to identify, quantify, and characterize proteins in milk and dairy products.</p>
                         <ul>
-                            <li>Proteomic and peptidomic analysis</li>
-                            <li>Protein identification and quantification</li>
-                            <li>Bioactive peptide discovery</li>
-                            <li>Custom analysis protocols</li>
+                            <li>ELISA</li>
+                            <li>Mass spectrometry (MS)</li>
+                            <li>HPLC-DAD</li>
+                            <li>Gel electrophoresis</li>
+                            <li>Custom protein analysis protocols</li>
                         </ul>
-                        <a href="detailed-services.html" class="btn">Learn More</a>
+                        <a href="detailed-services.html#proteomic" class="btn">Learn More</a>
+                    </div>
+                    <div class="service-img">
+                        <img src="images/Lumos.png" alt="Protein Analysis">
                     </div>
                 </div>
-
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="images/functionalpeptide.png" alt="Functional Analysis">
+            </div>
+            <div class="services-tab-content" id="tab-peptide" style="display: none;">
+                <div class="service-row">
+                    <div class="service-content">
+                        <h3>Peptidomic Analysis</h3>
+                        <p>Advanced peptide analysis to identify and characterize bioactive peptides in milk and dairy products, including their functional properties and digestion products.</p>
+                        <ul>
+                            <li>Peptidomic + Functional Annotation</li>
+                            <li>Full Peptidomic</li>
+                            <li>Absorptomics</li>
+                            <li>Bioactive peptide discovery</li>
+                            <li>Custom peptide analysis protocols</li>
+                        </ul>
+                        <a href="detailed-services.html#peptidomic" class="btn">Learn More</a>
                     </div>
+                    <div class="service-img">
+                        <img src="images/peptide.png" alt="Peptide Analysis">
+                    </div>
+                </div>
+            </div>
+            <div class="services-tab-content" id="tab-functional" style="display: none;">
+                <div class="service-row">
                     <div class="service-content">
                         <h3>Functional Analysis</h3>
+                        <p>We offer a suite of functional assays to evaluate the biological activity of milk and dairy components. Our team specializes in cell-based and biochemical assays to assess immunomodulatory, enzymatic, and metabolic effects, supporting both research and product development.</p>
                         <ul>
-                            <li>Cell adhesion studies</li>
-                            <li>Immunomodulatory assays</li>
-                            <li>Enzyme activity testing</li>
-                            <li>Lipid oxidation analysis</li>
+                            <li>Cell adhesion assays</li>
+                            <li>THP-1-derived macrophage immunomodulatory assays</li>
+                            <li>Enzyme assays (BSSL, lipases, proteases, lysozyme)</li>
+                            <li>Lipid oxidation testing</li>
+                            <li>Fatty acid profiling</li>
+                            <li>Fecal fat and protein analysis</li>
                         </ul>
                         <a href="services.html#functional" class="btn">Learn More</a>
                     </div>
-                </div>
-
-                <div class="service-card">
                     <div class="service-img">
-                        <img src="images/improving_adult_health-400px.jpg.webp" alt="In Vitro Digestion">
+                        <img src="images/functionalpeptide.png" alt="Functional Analysis">
                     </div>
+                </div>
+            </div>
+            <div class="services-tab-content" id="tab-digestion" style="display: none;">
+                <div class="service-row">
                     <div class="service-content">
                         <h3>In Vitro Digestion</h3>
+                        <p>Our lab provides advanced in vitro digestion modeling using both static and dynamic systems. These models simulate human gastrointestinal conditions to study the digestion and bioavailability of milk proteins, peptides, and other nutrients, including the impact on the gut microbiome.</p>
                         <ul>
-                            <li>Static digestion models</li>
-                            <li>SHIME digestion systems</li>
-                            <li>Microbiome analysis</li>
+                            <li>Static in vitro digestion with INFOGEST protocol</li>
+                            <li>SHIME digestion without microbiome analysis</li>
+                            <li>SHIME with microbiome analysis</li>
                             <li>Custom model development</li>
                         </ul>
                         <a href="services.html#digestion" class="btn">Learn More</a>
                     </div>
-                </div>
-
-                <div class="service-card">
                     <div class="service-img">
-                        <img src="images/spray.png" alt="Data Analysis">
+                        <img src="images/improving_adult_health-400px.jpg.webp" alt="In Vitro Digestion">
                     </div>
+                </div>
+            </div>
+            <div class="services-tab-content" id="tab-data" style="display: none;">
+                <div class="service-row">
                     <div class="service-content">
                         <h3>Data Analysis</h3>
+                        <p>Comprehensive data analysis and reporting services to help you understand and utilize your results effectively.</p>
                         <ul>
                             <li>Functional peptide annotation</li>
                             <li>Statistical analysis</li>
                             <li>Figure generation</li>
                             <li>16s bioinformatics</li>
+                            <li>Custom data analysis projects</li>
                         </ul>
                         <a href="services.html#data" class="btn">Learn More</a>
                     </div>
-                </div>
-
-                <div class="service-card">
                     <div class="service-img">
-                        <img src="images/bioactive_milk_proteins-400px.jpg.webp" alt="Consultation">
+                        <img src="images/spray.png" alt="Data Analysis">
                     </div>
+                </div>
+            </div>
+            <div class="services-tab-content" id="tab-consultation" style="display: none;">
+                <div class="service-row">
                     <div class="service-content">
                         <h3>Expert Consultation</h3>
+                        <p>Expert guidance for project design, troubleshooting, and research strategy in milk and dairy science.</p>
                         <ul>
-                            <li>Project design</li>
-                            <li>Technical troubleshooting</li>
+                            <li>Project Design</li>
+                            <li>Project Troubleshooting</li>
+                            <li>Hosting a Panel</li>
                             <li>Scientific writing</li>
                             <li>Research strategy</li>
                         </ul>
                         <a href="services.html#consultation" class="btn">Learn More</a>
                     </div>
+                    <div class="service-img">
+                        <img src="images/bioactive_milk_proteins-400px.jpg.webp" alt="Consultation">
+                    </div>
                 </div>
             </div>
-
-            <div class="text-center" style="text-align: center; margin-top: 2rem;">
-                <a href="services.html" class="btn" style="font-size: 1.1rem; padding: 1rem 2rem;">View Detailed Services & Pricing</a>
+            <div class="services-tab-content" id="tab-scoping" style="display: none;">
+                <div class="service-row">
+                    <div class="service-content">
+                        <h3>Scoping Review Articles</h3>
+                        <p>Comprehensive literature reviews on milk and dairy research topics, identifying research gaps and summarizing evidence for stakeholders and researchers.</p>
+                        <ul>
+                            <li>Technical Reports</li>
+                            <li>Scientific Publications</li>
+                            <li>Systematic Review Conduct</li>
+                            <li>Custom review projects available</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                    <div class="service-img">
+                        <img src="images/review.png" alt="Scoping Review Articles">
+                    </div>
+                </div>
+            </div>
+            <div class="services-tab-content" id="tab-panel" style="display: none;">
+                <div class="service-row">
+                    <div class="service-content">
+                        <h3>Hosting Expert Panel</h3>
+                        <p>Organizing and moderating expert panels on milk and nutrition topics, facilitating discussion among leading researchers and industry professionals.</p>
+                        <ul>
+                            <li>Panel organization and moderation</li>
+                            <li>Facilitating expert discussion</li>
+                            <li>Panel reports and recommendations</li>
+                            <li>Custom panel events available</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                    <div class="service-img">
+                        <img src="images/panel.png" alt="Hosting Expert Panel">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -843,6 +980,20 @@
             <h2>Ready to Collaborate?</h2>
             <p>Contact us to discuss how our expertise can support your research and product development goals.</p>
             <a href="start-project.html" class="btn">Start Your Project 🚀</a>
+        </div>
+    </section>
+
+    <section id="about-us" class="section" style="background-color: #e9f2f7;">
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+            <div style="flex: 1 1 350px; min-width: 300px; text-align: center;">
+                <img src="images/labphoto.png" alt="Dallas Lab Group Photo" style="max-width: 100%; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+            </div>
+            <div style="flex: 2 1 400px; min-width: 300px;">
+                <h2 style="color: var(--primary); margin-bottom: 1rem;">About Us</h2>
+                <p style="font-size: 1.15rem; line-height: 1.7;">
+                    The Dallas Lab at Oregon State University is dedicated to unraveling the biological secrets of human and bovine milk. Our multidisciplinary team investigates how milk's proteins and peptides are affected by digestion and how these components support infant and adult health. We are passionate about developing innovative processing methods that preserve milk's bioactivity, with the goal of improving nutrition and health outcomes for all ages.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -1261,6 +1412,22 @@
             // Set first tab as active on load
             tabButtons[0].classList.add('active');
             tabContents[0].style.display = 'block';
+
+            // Service tabs
+            const serviceTabButtons = document.querySelectorAll('.services-tab-btn');
+            const serviceTabContents = document.querySelectorAll('.services-tab-content');
+            serviceTabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    serviceTabButtons.forEach(b => b.classList.remove('active'));
+                    serviceTabContents.forEach(tc => tc.style.display = 'none');
+                    this.classList.add('active');
+                    const tab = this.getAttribute('data-tab');
+                    document.getElementById('tab-' + tab).style.display = 'block';
+                });
+            });
+            // Set first tab as active on load
+            serviceTabButtons[0].classList.add('active');
+            serviceTabContents[0].style.display = 'block';
         });
     </script>
 </body>
